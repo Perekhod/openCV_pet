@@ -19,7 +19,7 @@ int main()
     cv::Mat frame;
     cv::Mat fgMask;  // Маска переднего плана для выделения движущихся объектов
 
-    // Инициализация алгоритма выделения фона (можно выбрать другие алгоритмы)
+    // Инициализация алгоритма выделения фона
     cv::Ptr<cv::BackgroundSubtractor> pMOG2 = cv::createBackgroundSubtractorMOG2();
 
     while (true)
@@ -36,7 +36,7 @@ int main()
         pMOG2->apply(frame, fgMask);
 
         // Применение морфологических операций для удаления шумов и улучшения результатов
-        cv::morphologyEx(fgMask, fgMask, cv::MORPH_OPEN, cv::Mat());
+        cv::morphologyEx(fgMask, fgMask, cv::MORPH_OPEN,  cv::Mat());
         cv::morphologyEx(fgMask, fgMask, cv::MORPH_CLOSE, cv::Mat());
 
         // Нахождение контуров движущихся объектов
